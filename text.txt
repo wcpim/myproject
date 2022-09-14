@@ -1,1 +1,21 @@
 
+/////////////////////////////////////////////////////////////////
+git credential-cache exit (คำสั่งในการเปลียน github account)
+
+git config --global user.name "ชื่อตัวเอง"      ( ตัวอย่าง git config --global user.name "POOH" )
+
+git config --global user.email เมลตัวเอง      ( ตัวอย่าง git config --global user.email sam@example.com )
+
+git clone ตามด้วยลิงค์ git ของจารย์
+
+สำหรับที่ใช้คอมในห้อง ถ้าหาก ในขั้นตอน clone แล้วขึ้น Repository not found ให้ใช้คำสั่ง '''git config --system --unset credential.helper''' แล้ว clone ใหม่นะครับ
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ตอนทำเสร็จแล้ววว
+
+git add . 
+
+git commit -m "ชื่องานน"
+
+git push origin main
