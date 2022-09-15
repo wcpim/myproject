@@ -8,8 +8,6 @@ function countCovidStatus(covidStatusArray) {
     return undefined;
   }else if(a!=='negative and low risk' || a!=='negative and high risk' || a!=='positive'){
     return { };
-  }else if(a!=='negative and low risk' && a!=='negative and high risk' && a!=='positive'){
-    return { };
   }else { 
     const counts = {};
     a.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
