@@ -54,4 +54,4 @@ console.log(countCovidStatus(null))
 console.log(countCovidStatus(undefined))
 
 module.exports = countCovidStatus
-
+//
