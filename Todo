@@ -1,0 +1,38 @@
+class Todo{
+    static runningId=1    
+    constructor(description){
+        this.id=Todo.runningId++        
+        this.description=description    }
+    getTodo(){
+        return {id: this.id, description: this.description}
+    }
+    setDescription (newDescription){
+        this.description=newDescription    }
+}
+// const todo1=new Todo('watch movies')// todo1.setDescription('programming practices')// console.log(todo1.getTodo())// const todo2=new Todo('read books')// console.log(todo2.getTodo())function todoList(){
+    let todos=[]
+    function addTodo(desc){
+        return todos.push(new Todo(desc))
+    }
+    function removeTodo(removeId){
+        todos=todos.filter(todo=>todo.id!==removeId)
+    }
+    function findTodo(searchId){
+       return todos.find(todo=>todo.id===searchId)
+    }
+    function getTodos(){
+        return todos   
+     }
+    return{
+        addTodo, removeTodo, findTodo,getTodos    
+    }
+
+//destructuring objectconst {addTodo, removeTodo, findTodo,getTodos}=todoList()
+console.log(addTodo('watch movies'))
+console.log(addTodo('online shopping'))
+console.log(addTodo('read books'))
+console.log(getTodos())
+removeTodo(2)
+console.log(getTodos())
+console.log(findTodo(1))
+// const todoManagement=todoList()// console.log(todoManagement.addTodo('watch movies'))
