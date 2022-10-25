@@ -1,0 +1,20 @@
+const { template } = require('@babel/core')
+
+function totalPages(arrayItems, rowsPerPage) {
+  let a = arrayItems;
+  let b = rowsPerPage;
+  if (a==null || a==undefined){
+    return undefined;
+  }else if (b==null || b==undefined ||b==0){
+    return 1;
+  }else {
+    return Math.ceil(a.length/b);
+  }
+}
+module.exports = totalPages
+
+// #### ให้เขียน Function ชื่อ totalPages (arrayItems, rowsPerPage) โดยที่ arrayItems คือ array ของรายการ Items ทั้งหมด และ
+//  rowsPerPage คือ จำนวนรายการ Item ที่จะแสดงต่อ 1 Page โดยฟังก์ชันจะ return จำนวน page ที่คำนวณได้
+
+// - กรณี arrayItems เป็น null หรือ undefined ให้ return undefined
+// - กรณี rowsPerPage เป็น null หรือ undefined หรือเป็น 0 จะ return 1
