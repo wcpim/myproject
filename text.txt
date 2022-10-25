@@ -19,3 +19,6 @@ git add .
 git commit -m "ชื่องานน"
 
 git push origin main
+
+npm install
+npm test
