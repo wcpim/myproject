@@ -1,0 +1,45 @@
+
+**ข้อที่ 1 ให้สร้าง Fuction ที่ต้อง Retrun ค่า Array ที่มีเฉพาะ Pokemon Type เป็น fire และต้องเรียง id จากน้อยไปมากด้วย**
+
+**ข้อที่ 2 ให้สร้าง Fuction ที่ต้อง Retrun ค่า Array ของ Pokemon ที่มี atk มากสุดของแต่ละ type ซึ่งประกอบด้วย grass, fire, electric และเรียงตาม atk จากมากไปน้อย**
+const poke = require('./pokeList.js').pokeList;
+//เริ่มเขียนต่อจากตรงนี้
+
+function findPokeBytype(poke) {
+    let arr = []
+    let arrsort = []
+    for (const yo of poke) {
+        if(yo!==null && yo.type ==='fire'){
+         arr.push(yo)       
+        }
+    }
+     arrsort = arr.sort(function(a,b){ return a.id-b.id})
+     return arrsort
+}
+console.log(findPokeBytype(poke))
+
+function findPokeBytype(poke){
+   let arrgrass = []
+   let arrfire = []
+   let arrelectric = []
+   let arrsort = []
+   for (const yo of poke) {
+    if (yo!==null&&yo.type==='grass'){
+        arrgrass.push(yo)
+    }
+    if(yo!==null&&yo.type==='fire'){
+        arrfire.push(yo)
+    }
+   if(yo!==null&&yo.type==='electric'){
+        arrelectric.push(yo)
+    }
+}
+   arrgrass.sort((a,b)=>b.atk-a.atk)
+   arrfire.sort((a,b)=>b.atk-a.atk)
+   arrelectric.sort((a,b)=>b.atk-a.atk)
+
+   return arrsort=[arrfire[0],arrelectric[0],arrgrass[0]].sort((a,b)=>b.atk-a.atk)
+   
+}
+console.log(findPokeBytype(poke))
+
