@@ -1,0 +1,25 @@
+const movies = require('./movise.json').movies
+let playList = []
+const addMovie = (movies,...id) => {
+    return playList = movies.filter(movieId => id.some(e => movieId.id === e))
+}
+
+const deleteMovie = (...id) => {
+    return playList = playList.filter(movieId => id.every(e => movieId.id !== e))
+}
+
+const swapMovie = (index_one, index_two) =>{
+    return [playList[index_one], playList[index_two]] = [playList[index_two], playList[index_one]]
+}
+addMovie(movies,1,2)
+deleteMovie(1,2)
+swapMovie(1,2)
+swapMovieById(1,100)
+console.log(playList)
+
+1. **addMovie(movies,...id)**
+   ใช้สำหรับเพิ่มหนังเข้า array playlist โดยจะรับ parameter 2 ตัวได้แก่ array ของ movie และ id ของหนังโดยสามารถรับค่ามาได้มากกว่า 1 id
+2. **deleteMovie(id)**
+   ใช้สำหรับลบหนังออกจาก playlist โดยจะรับ parameter 1 ตัว คือ id ของหนัง
+3. **swapMovie(index_one, index_two)**
+   ใช้สำหรับสลับ item ที่อยู่ใน array playlist โดยจะรับ parameter 2 index_one และ index_two เป็น index ที่จะต้องสลับกัน
