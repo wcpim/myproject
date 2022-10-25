@@ -1,0 +1,59 @@
+function countCovidStatus(covidStatusArray){
+    if(covidStatusArray === null || covidStatusArray === undefined){
+        return undefined
+    }
+    else if(covidStatusArray.length === 0){
+        return {}
+    }
+
+    let negLow=0; let negHigh=0;let pos=0
+    covidStatusArray.forEach(status => {
+        if(status === 'negative and low risk'){
+            negLow = negLow + 1
+        }
+        if(status === 'negative and high risk'){
+            negHigh = negHigh + 1
+        }
+        if(status === 'positive'){
+            pos = pos + 1
+        }
+    });
+    
+    const covidStatus = {}
+    if(pos > 0){
+        covidStatus.positive = pos // สร้าง Positive Key ใน covidStatus
+    }
+    if(negHigh > 0){
+        covidStatus['negative and high risk'] = negHigh
+    }
+    if(negLow > 0){
+        covidStatus['negative and low risk'] = negLow
+    }
+    return covidStatus
+}
+
+console.log(
+        countCovidStatus([
+          'negative and low risk',
+          'positive',
+          'negative and low risk',
+          'negative and high risk',
+          'positive',
+          'negative and low risk'  ])
+      )
+      
+      console.log(countCovidStatus(['positive', 'negative and low risk', 'positive']))
+      console.log(
+        countCovidStatus([
+          'negative and low risk',
+          'positive',
+          'negative and low risk',
+          'abnormal',
+          'negative and high risk',
+          'positive',
+          ' normal'  ])
+      )
+      console.log(countCovidStatus(['covid']))
+      console.log(countCovidStatus([]))
+      console.log(countCovidStatus(null))
+      console.log(countCovidStatus(undefined))
