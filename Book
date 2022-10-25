@@ -1,0 +1,36 @@
+function findByTitle (name){
+    let titles = []
+    for (const book of books) {
+        if(book.title.includes(name)){
+            titles.push(book)
+        }
+    }
+    return titles
+}
+console.log(findByTitle("Flex 3 in Action"))
+
+
+function findAuthors(Authors){
+ let arrat = []
+ for (const book of books) {
+    if(book.authors.includes(Authors)){
+        arrat.push(book)
+    }
+ }
+ return arrat
+}
+console.log(findAuthors("W. Frank Ableson").length)
+
+
+
+
+function findCategories(cat){
+    let arrcat = [];
+    for (const book of books) {
+        if(book.categories.includes(cat)){
+            arrcat.push(book)
+        }
+    }
+    return arrcat
+}
+console.log(findCategories("Java").length)
