@@ -1,0 +1,50 @@
+class Person {
+
+  constructor(firstName='N/A',lastName='N/A',dateOfBirth=new Date(Date.now())) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.dateOfBirth = dateOfBirth
+      }
+   getFullname() {
+    return `'${this.lastName}, ${this.firstName}'`
+   }
+   getAge(){
+    let x = new Date(Date.now())
+    let y = new Date(this.dateOfBirth)
+    let a = new Date(Date.now())
+    let b = new Date(this.dateOfBirth)
+    let c = new Date(Date.now())
+    let d = new Date(this.dateOfBirth)
+    x = x.getFullYear() //now
+    y = y.getFullYear() //dob
+    a = a.getMonth() //now
+    b = b.getMonth() //dob
+    c = c.getDate() //now
+    d = d.getDate() //dob
+
+    // var diff_ms = x - y;
+    let diff_ms
+ 
+
+    if (a===b ){
+        if (c>=d){
+        return diff_ms =x-y
+        }else {
+            return diff_ms=x-y-1
+        }
+     
+    }else if(a<b){
+        return diff_ms=x-y-1
+    }else{
+        return diff_ms =x-y
+    }
+   }
+   
+   isEqual(){
+    // return this.firstname===anotherPerson.lastName
+
+}
+toString(){
+    
+}
+}
