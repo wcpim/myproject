@@ -1,0 +1,40 @@
+// const { template } = require('@babel/core')
+
+function getMaxLengthString(arrayOfString) {
+ let a = arrayOfString;
+ if(a===null || a===undefined){
+    return undefined
+ }else{
+   let max_str = a[0].length
+   let ans_max = a[0] 
+   for (const item of a) {
+      let max_str_i = item.length;
+      if(max_str_i > max_str){
+          ans_max = item;
+          max_str = max_str_i;
+      }
+      else if(max_str_i == max_str && ans_max != item ){
+          ans_max = [`${ans_max}`,`${item}`]
+          return ans_max
+      }
+  }
+  return ans_max = [ans_max]
+}
+}
+
+console.log(getMaxLengthString(['hello', 'hi', 'hey']))
+console.log(getMaxLengthString(['hello', 'hi', 'hey', 'Good Evening', 'Good Morning']))
+console.log(getMaxLengthString(['hi']))
+console.log(getMaxLengthString(null))
+console.log(getMaxLengthString(undefined))
+// module.exports = getMaxLengthString
+
+// #### ให้เขียน Function ชื่อ getMaxLengthString (arrayOfString) เพื่อ return array ของ String เฉพาะที่มีความยาวของจำนวนตัวอักษรมากที่สุด
+//  กรณี arrayOfString มีค่าเป็น null หรือ undefined ให้ return undefined
+
+// - ตัวอย่างเช่น
+//   1. getMaxLengthString(['hello', 'hi', 'hey']) return ['hello']
+//   2. getMaxLengthString(['hello', 'hi', 'hey', 'Good Evening', 'Good Morning']) return ['Good Evening', 'Good Morning']
+//   3. getMaxLengthString(['hi']) return ['hi']
+//   4. getMaxLengthString(null) return undefined
+//   5. getMaxLengthString(undefined) return undefined
