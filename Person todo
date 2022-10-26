@@ -1,0 +1,28 @@
+firstName //String lastName //String dateOfBirth / /Date
+constructor (firstName='N/A', lastName='N/A', dateOfBirth=new
+Date (Date.now ()) //creating and initializing object properties getFullName ()
+//return string in the format 'lastName, firstName' getAge ()
+//return age by calculating from date0fBirth isEqual (anotherPerson)
+/ compares this firstName and lastName to the specified another person object. Returns false if the fullName are different and true, if it is the same (case insensitive) toString () 
+//return a string representing fullName and age
+
+
+Todo class //properties
+-id //unique id
+-description //todo detail
+//methods
+-getTodo ( )
+//returns (id, description) object
+-setDescription (newDescription)
+//allows to edit description
+
+TodoList Management
+- todos / /stores all todo in array
+- function addTodo (desc)
+/adds a new todo to the end of todos array, returns the new lenath of the arrav
+functon removeTodo (removed)
+//removes a todo that its id equals to removeId
+function findTodo (searchId)
+//returns a todo object that its id equals to searchId
+- function getTodos ()
+//returns todos array
