@@ -19,6 +19,22 @@ class BookMark {
             this.bookMarks=this.bookMarks.filter(page=>page!=found)
         }
         return found
+        //let x=[1,2,3,4,5,6]
+let totalpage=100
+function remove(number) {
+    if(number<=totalpage){
+        let y=x.filter(x=>x!==number)
+        if(y.length==x.length){
+            return undefined
+        }else{
+            x=y
+             return number
+        }
+    }else{
+        return undefined
+    }
+    
+}//
   }
    goToFirstBookMark(){
     //returns the first bookMarks pageNumber. If there are no bookMarks in an array, return undefined.
