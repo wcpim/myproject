@@ -1,0 +1,65 @@
+class Person{
+    static id=1
+    constructor(name='N/A',Wishlist=[]){
+        this.name=name
+        this.Wishlist=Wishlist
+        this.id=Person.id++
+    }
+    getId(){
+     return this.id
+    }
+    getName(){
+        return this.name
+    }
+    getWishlist(){
+        return this.Wishlist
+    }
+    // - เพิ่ม item เข้าไปใน Wishlist
+    // - ถ้า item เป็น null หรือ undefind ให้ return undefind
+    // - โดยต้อง return เป็นความยาวล่าสุดของ array Wishlist
+    addWishlist(item){
+        if(item===null || item===undefined){
+            return undefined
+        }else{
+            this.Wishlist.push(item)
+            return this.Wishlist.length
+        }
+    }
+    // - ลบ item ออกโดยใช้ ชื่อ item 
+    // - ถ้า item เป็น null หรือ undefind ให้ return undefind
+    // - ถ้า item ที่จะลบไม่มีอยู่จริงให้ return "not found to remove"
+    // - โดยต้อง return ชื่อ item ที่สามารถลบได้
+    removeWishlist(item){
+        let found=this.Wishlist.find(itemm=>itemm===item)
+        if (item===undefined || item===null) {
+            return undefined
+        }else if(found===undefined){
+            return "not found to remove"
+        }else if(found!==undefined){
+        this.Wishlist=this.Wishlist.filter(itemm=>itemm!==found)
+        return found
+        }
+    }
+    // - ถ้า item เป็น null หรือ undefind ให้ return undefind
+    // - หา item ที่อยู่ใน array wishlist และให้ return ออกมาเป็น object {index: ตำแหน่งของ item, value: ชื่อ item}
+    // - ถ้าไม่เจอ item ให้ return "not found"
+    findWishlist(item){
+        
+        let find=this.Wishlist.find(itemm=>itemm===item)
+        let finds=this.Wishlist.findIndex(itemm=>itemm===item)
+        if (item===undefined || item===null) {
+            return undefined
+        }else if(find===undefined){
+            return "not found"
+        }else {
+            let y={index:finds,value:find}  
+            return y
+           }
+    }
+    toString(){
+        `id: ${this.id()}, wishlist: ${this.Wishlist()}`
+    }
+}
+
+module.exports = {Person}
+
