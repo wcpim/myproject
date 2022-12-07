@@ -1,0 +1,65 @@
+const { template } = require('@babel/core')
+
+
+class Music{
+    static id=1
+    constructor(title=null,artist=null,time=0){
+        this.musicID=Music.id++
+        this.title=title
+        this.artist=artist
+        this.time=(time<0? 1.00:time)
+    }
+    getMusic(){
+        return {musicID:this.musicID,title:this.title,artist:this.artist,time:this.time}
+    }
+}
+class MusicPlayer{
+    constructor(model){
+        this.playlist=[]
+        this.model=model
+        this.status="stop"
+    }
+    addmusic(title,artist,time){
+       let x= this.playlist.filter((x)=>x.title==title && x.time==time)
+       if(x.length!=0){
+        return "alredy have this song in playlist"
+       }else{
+        this.playlist.push(new Music(title,artist,time))
+        return "song added"
+       }
+    }
+    removemusic(musicid){
+        let y=this.playlist.find((x)=>x.musicID===musicid) 
+        if(y!=undefined){
+       this.playlist=this.playlist.filter((x)=>x.musicID!=musicid)
+            return `remove: ${musicid} complete `
+        }else{
+            return `no have music id : ${musicid}`
+            
+        }
+    }
+    play(){
+        if(this.status==="stop"){
+            this.status="play"
+        }else{
+            this.status="stop"
+        }
+    }
+    gettitleMusic(){
+     let ans=[]
+     this.playlist.forEach((x)=>ans.push(x.title))
+     return ans;
+    }
+    getArtist(){
+        let ans={}
+        let myartist=[]
+        this.playlist.forEach((x)=>myartist.push(x.artist))
+        for(let i=0;i<myartist.length;i++){ // 
+            let x=this.playlist.filter((x)=>x.artist==myartist[i])// x.artist=="pim,"
+            ans[myartist[i]]=x.length 
+        }
+        return ans;
+    }
+}
+
+module.exports ={Music,MusicPlayer};
