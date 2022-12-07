@@ -1,0 +1,74 @@
+const { template } = require('@babel/core')
+//64130500076 วริษฐา จันทร์วันเพ็ญ
+class BookMark {
+  constructor(isbn, totalPages=0){
+    this.isbn=isbn
+    this.totalPages=totalPages
+    this.bookMarks=[]
+  }
+  addBookMark(pageNumber){
+    //returns the new length of bookMarks array. If pageNumber is less than one or greater than the totalPages, no pageNumber added.
+    if(pageNumber>=1 && pageNumber<=this.totalPages){
+      this.bookMarks.push(pageNumber)
+    }
+    return this.bookMarks.length
+  }
+  removeBookMark(pageNumber) {
+    let found=this.bookMarks.find(page=>page==pageNumber)
+        if (found!=undefined) {
+            this.bookMarks=this.bookMarks.filter(page=>page!=found)
+        }
+        return found
+  }
+   goToFirstBookMark(){
+    //returns the first bookMarks pageNumber. If there are no bookMarks in an array, return undefined.
+    if(this.bookMarks.length===0){
+      return undefined
+    }else{
+    return this.bookMarks[0]
+    }
+  }
+  goToLastBookMark(){
+    //returns the last bookMarks pageNumber. If there are no bookMarks in an array, return undefined.
+    if(this.bookMarks.length===0){
+      return undefined
+    }else{
+    return this.bookMarks[this.bookMarks.length-1]
+    }
+  }
+  getBookMarks(){
+    return this.bookMarks
+  }
+  
+}
+
+module.exports = BookMark
+// const randomBookMark = () => Math.floor(Math.random() * 256) + 1
+
+const bm1 = new BookMark('978-7-222-64532-2', 256)
+  // const bmNumber1 = randomBookMark()
+
+  console.log((bm1.bookMarks.push(1)))
+
+
+  // const bmNumber2 = randomBookMark()
+  console.log((bm1.bookMarks.push(2)))
+  
+
+  //const bmNumber3 = randomBookMark()
+  console.log((bm1.bookMarks.push(3)))
+  
+
+  bm1.removeBookMark(1)
+  console.log((bm1.bookMarks.length))
+ 
+
+  bm1.removeBookMark(257)
+  console.log((bm1.bookMarks.length))
+
+
+  bm1.removeBookMark(2)
+
+
+  bm1.removeBookMark(3)
+  console.log((bm1.bookMarks.length))
