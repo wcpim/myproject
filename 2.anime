@@ -1,0 +1,100 @@
+/*
+1.ให้สร้าง class ของ อนิเมะ โดย มี attribute ดังนี้ 1.ชื่อเรื่อง  title
+2.จำนวนตอน episode 3.ตอนล่าสุดที่ออกฉาย  current 4.คะเเนนความชอบของผู้ชม rating 0-5 คะเเนน โดยสามารถให้คะเเนนได้เมื่อมีการฉายออกมาครบทุกตอนเเล้วเท่านั้น ถ้าฉายไม่ครบจะมีจะเเนนเป็น null
+เช่น {"Chibi Maruko-chan",10,10,3.5} หรือ {"Spy x Family",15,10,null} 
+2.โดยใน class จะมี medthod ดั้งนี้
+2.1 updateEpisode(Episode) ใช้สำหรับอัพเดตตอนปัจจุบัน โดยห้ามเกินจำนวนตอนทั้งหมด โดยถ้า อัพเดตจำนวนตอนได้จะ return คำว่า "update complete"
+ เเต่ถ้าไม่ได้จะ return คำว่า "cant update" 
+2.2 makeRating(rating) ใช้สำหรับให้คะเเนนอนิเมะเเต่ถ้าอนิเมะเรื่องนั้นยังมีการฉายไม่ครบทุกตอนจะไม่มีการให้คะเเนน เเละreturn คำว่า  "cant make rating"
+2.4 getAnime() ใช้สำหรับเเสดงอนิออกมาในรูปเเบบของ object
+3.สร้าง array สำหรับเก็บค่า Anime ในเเต่ละเรื่องของเรา
+4.สร้าง function ในการ management Anime ของเราโดยมีฟังชั่นก์ชื่อว่า animeManagement() เป็น higher oder function  โดยจะ return function ดังนี้ 
+4.1  addAnime(Animetitle,episode,currentEpiosode) โดยทำหน้าที่เพิ่ม อนิเมะลงใน array ที่เอาไว้เก็บอนิเมะ ถ้าจำนวนตอนที่ฉายมากกว่าจำนวนตอนทั้งหมดหรือจำนวนตอนติดลบจะไม่สามารถเเอดได้ 
+เเละจะreturn "cant add this Anime" เมื่อ ไม่สามารถเพิ่มได้
+4.2  removeAnime(Animetitle)ทำหน้าที่ลบ อนิเมะใน array เเละ return ขนาดของ array ตัวใหม่
+4.3  showAllAnimetitle()เเสดง array ชื่อของ อนิเมะทั้งหมดที่มี 
+4.4  showendedAnime()เเสดง array รายชื่อของอนิเมะที่มีการฉายจบเเล้ว 
+*/
+const { template } = require('@babel/core')
+class Anime{
+   constructor(Animetitle,Episode,currentEpiosode,rating=null){
+       this.title=Animetitle
+       this.episode=Episode
+       this.current=currentEpiosode
+       this.rating=rating
+     
+   }
+//    2.1 updateEpisode(Episode) ใช้สำหรับอัพเดตตอนปัจจุบัน โดยห้ามเกินจำนวนตอนทั้งหมด โดยถ้า อัพเดตจำนวนตอนได้จะ return คำว่า "update complete"
+//  เเต่ถ้าไม่ได้จะ return คำว่า "cant update" 
+
+   updateEpisode(Episode){
+      
+       if (Episode<=this.episode){
+         this.current=Episode
+         return "update complete"
+       }else if(Episode>this.episode){
+         return "cant update" 
+       }
+   }
+   // 2.2 makeRating(rating) ใช้สำหรับให้คะเเนนอนิเมะเเต่ถ้าอนิเมะเรื่องนั้นยังมีการฉายไม่ครบทุกตอนจะไม่มีการให้คะเเนน เเละreturn คำว่า  "cant make rating"
+   makeRating(rating){
+      if(rating>5){
+         return "cant make rating"
+      }else if (this.current===this.episode){
+       this.rating=rating
+       return this.rating
+    }else if(this.current<this.episode){
+      return "cant make rating"
+    }
+   }
+   //getAnime() ใช้สำหรับเเสดงอนิออกมาในรูปเเบบของ object
+   getAnime(){
+      return {Animetitle:this.title, Episode:this.description,currentEpiosode:this.current,rating:this.rating}
+   }
+  }
+ 
+  function animeManagement(){
+    let AnimeList=[];
+    function addAnime(Animetitle,episode,currentEpiosode){
+     let anini = new Anime(Animetitle,episode,currentEpiosode)
+     if(currentEpiosode>episode || episode<0 || currentEpiosode<0){
+      return "cant add this Anime"
+     }else{
+     AnimeList.push(anini)
+     return "complete"
+    }
+   }
+    function showAllAnimetitle(){
+      let arrtitle=[]
+      AnimeList.forEach(anime => {
+          arrtitle.push(anime.title)
+    }); 
+    return arrtitle
+    }
+    function showendedAnime(){
+       let arrended2=[]
+       let arrended=[]
+       arrended=AnimeList.filter(anime=>anime.episode===anime.current)
+       arrended.forEach(anime => {
+         arrended2.push(anime.title)
+       });
+       return arrended2
+    }
+    function removeAnime(Animetitle){
+       AnimeList=AnimeList.filter(anime=>anime.title!==Animetitle)
+      return AnimeList.length
+}
+return{addAnime,showAllAnimetitle,showendedAnime,removeAnime}
+}
+function extra(secret){
+ return "Fighting nakub kun Waristha ^.^"
+}
+module.exports ={Anime,animeManagement,extra};
+
+const bm2 = animeManagement()
+    bm2.addAnime("Toriko",130,130)
+    bm2.addAnime("Maruko",30,1)
+    bm2.addAnime("Reborn",54,54)
+    bm2.addAnime("Hunter x Hunter",1,1)
+    bm2.addAnime("Spy x Family",123,1)
+    console.log(bm2.showendedAnime())
