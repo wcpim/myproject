@@ -1,0 +1,22 @@
+function minMedMax (num1, num2, num3){
+  let i=[num1, num2, num3]
+  let a=i.sort(function(a, b){return a - b})
+  return {min:i[0],mid:i[1],max:i[2]}
+}
+function getMaxLengthString(arrayOfString) {
+  if(arrayOfString===null || arrayOfString===undefined){
+      return undefined
+  }else{
+      var longestWord = [];
+      for (const word of arrayOfString)  {
+          if(word.length > longestWord.length) {
+            longestWord = word;
+          } else if((word.length == longestWord.length) &&  longestWord !== word){
+              longestWord = [`${longestWord}`,`${word}`]
+              return longestWord
+          }
+        };
+        arr=[longestWord]
+        return arr;
+  }
+}
