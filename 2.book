@@ -1,0 +1,44 @@
+const { template } = require('@babel/core')
+//your student id, firstname, and lastname here
+//64130500076 waristha chanwanphen
+class Book {
+    constructor(isbn, title='untitled', ebook=false){
+        this.isbn=isbn
+        this.title=title
+        this.ebook=ebook
+        this.authors=[]
+    }
+    addAuthor(fn, ln){
+        for(let i=0;i<fn.length;i++){
+     this.authors.push({firstname:fn,lastname:ln})
+   // this.authors.push({firstname:fn,lastname:ln})
+        return this.authors.length
+        }
+      }
+    getFirstAuthor(){
+     if(this.authors.length===0){
+        return undefined
+     }else{
+        return this.authors[0]
+     }
+    }
+    getCoAuthors(){
+        if(this.authors.length===0){
+            return []
+         }else{
+             let i=this.authors.filter((x)=>x!=this.authors[0])
+             return i
+         }
+    }
+    findAuthor(firstname, lastname){
+        let r=_firstname.toLowerCase()
+        let y=lastname_.toLowerCase()
+        let z=this.authors.find((x)=>x.firstname.toLowerCase()==r && x.lastname.toLowerCase()==y)
+        return z
+    }
+    hasEbook(){
+ return this.ebook
+    }
+}
+
+module.exports = Book
