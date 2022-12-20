@@ -23,18 +23,12 @@ class Book {
      }
     }
     getCoAuthors(){
-        if(this.authors.length===0){
-            return []
-         }else{
-             let i=this.authors.filter((x)=>x!=this.authors[0])
-             return i
-         }
+       let co = this.authors.filter(co => co !== this.authors[0])
+  return co
     }
     findAuthor(firstname, lastname){
-        let r=_firstname.toLowerCase()
-        let y=lastname_.toLowerCase()
-        let z=this.authors.find((x)=>x.firstname.toLowerCase()==r && x.lastname.toLowerCase()==y)
-        return z
+   let x = this.authors.find(find=>find.firstname.toLowerCase()===firstname.toLowerCase()&&find.lastname.toLowerCase()===lastname.toLowerCase())
+   return x
     }
     hasEbook(){
  return this.ebook
