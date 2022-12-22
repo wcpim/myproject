@@ -1,0 +1,25 @@
+function itemList(userItems) {
+  const items = userItems
+   
+  const initialPage = () => {
+   const input = document.querySelector('input')
+   input.addEventListener('input', filterItemsHandler)
+   showItems(items)
+      
+  }
+
+  const filterItemsHandler = (event) => {
+   const events = event.target.value
+   const fil = items.filter(item=>item.keywords.toLowerCase().includes(events.toLowerCase()))
+   showItems(fil)
+  }
+   
+  const showItems = (items) => {
+    const ul = document.getElementById('items')
+    ul.textContent = ''
+    for (let i = 0; i < items.length; i++) {
+      const li = document.createElement('li')
+      li.textContent = `ID:${items[i].id}, NAME:${items[i].name}, KEYWORDS:${items[i].keywords}`
+      ul.appendChild(li)
+      
+    }
