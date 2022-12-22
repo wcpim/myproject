@@ -1,0 +1,37 @@
+function paginateManagement(items, rows) {
+  const rowsPerPage = rows
+  const products = items
+
+  const showItemsOfCurrentPage = (currentPageNumber) => {
+  const getitem =  getItemsOfCurrentPage(products, currentPageNumber, rowsPerPage)
+  const idpro = document.getElementById('products')
+  for (let i = 0; i < getitem.length; i++) {
+    const li = document.createElement('li')
+    li.textContent = `ID:${getitem[i].id}, NAME:${getitem.name}`
+    idpro.appendChild(li)
+  }
+  }
+  const pageHandler = (event) => {
+  const events = event?.target.getAttribute('id')
+  const eventtar = document.getElementById(events)
+  console.log(events);
+  const divpagi = document.querySelector('.pagination')
+  const idpro = document.getElementById('products')
+  idpro.textContent=''
+  for (let i = 0; i < divpagi.children.length; i++) {
+    divpagi.children[i].style = "border: 1px solid #999"
+    
+  }
+  eventtar.style = "background-color: LightSteelBlue"
+  showItemsOfCurrentPage(events)
+  }
+  const showPageNumbers = () => {
+    const gettotal = getTotalPages(products, rowsPerPage)
+    const divpagi = document.querySelector('.pagination')
+    for (let i= 1; i < gettotal; i++) {
+     const button = document.createElement('button')
+      button.setAttribute('id',i)
+      button.textContent = i
+      divpagi.appendChild(button)
+      button.addEventListener('click',pageHandler)
+    }
