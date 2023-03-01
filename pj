@@ -45,23 +45,7 @@ const fromto = () => {
   }
 };
 
-const iscold = () => {
-  if (
-    (tempfrom.value === "C" && cal.value > 10) ||
-    (tempfrom.value === "F" && cal.value > 10) ||
-    (tempfrom.value === "R" && cal.value > 10) ||
-    (tempfrom.value === "K" && cal.value > 10)
-  ) {
-    return "หนาว!!!!";
-  } else if (
-    (tempfrom.value === "C" && cal.value < 10) ||
-    (tempfrom.value === "F" && cal.value < 10) ||
-    (tempfrom.value === "R" && cal.value < 10) ||
-    (tempfrom.value === "K" && cal.value < 10)
-  ) {
-    return "ร้อน!!!!";
-  }
-};
+
 
 const reset = () => {
   inputvalue.value = 0;
@@ -78,8 +62,7 @@ const reset = () => {
         type="text"
         v-model="inputvalue"
         v-on:keyup.enter="fromto"
-        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-      />
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" />
 
       <select v-model="tempfrom">
         <option>C</option>
@@ -99,7 +82,25 @@ const reset = () => {
 
       ค่าที่ได้ : {{ cal }}
 
-      <div v-show="tempfrom === 'C' && cal >= 20">หนาวมากๆๆๆ</div>
+      <div
+        v-show="
+          (tempfrom === 'C' && cal > 10) ||
+          (tempfrom === 'F' && cal > 10) ||
+          (tempfrom === 'R' && cal > 10) ||
+          (tempfrom === 'K' && cal > 10)
+        ">
+        หนาวมากๆๆๆ
+      </div>
+
+      <div
+        v-show="
+          (tempfrom === 'C' && cal < 10) ||
+          (tempfrom === 'F' && cal < 10) ||
+          (tempfrom === 'R' && cal < 10) ||
+          (tempfrom === 'K' && cal < 10)
+        ">
+        หนาวมากๆๆๆ
+      </div>
 
       <button v-on:click="reset">reset</button>
     </div>
