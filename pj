@@ -1,119 +1,109 @@
 <script setup>
-import {ref} from "vue"
-const tempfrom = ref("C")
-const tempto = ref("F")
-const cal = ref(0.00)
-const inputvalue = ref(0)
-
+import { ref } from "vue";
+const tempfrom = ref("C");
+const tempto = ref("F");
+const cal = ref(0.0);
+const inputvalue = ref(0);
 
 const fromto = () => {
-  if(tempfrom.value==='C' && tempto.value==='F'){
-    cal.value = parseFloat((inputvalue.value *1.8)+32).toFixed(2)
-    return cal.value
-  }else if(tempfrom.value==='C' && tempto.value==='R'){
-    cal.value = parseFloat(inputvalue.value *4/5).toFixed(2)
-    return cal.value
+  if (tempfrom.value === "C" && tempto.value === "F") {
+    cal.value = parseFloat(inputvalue.value * 1.8 + 32).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "C" && tempto.value === "R") {
+    cal.value = parseFloat((inputvalue.value * 4) / 5).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "C" && tempto.value === "K") {
+    cal.value = parseFloat(inputvalue.value - 273).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "F" && tempto.value === "C") {
+    cal.value = parseFloat(((inputvalue.value - 32) * 5) / 9).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "F" && tempto.value === "R") {
+    cal.value = parseFloat(((inputvalue.value - 32) * 4) / 9).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "F" && tempto.value === "K") {
+    cal.value = parseFloat((inputvalue.value - 32) * 5 + 273).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "R" && tempto.value === "C") {
+    cal.value = parseFloat((inputvalue.value * 5) / 4).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "R" && tempto.value === "F") {
+    cal.value = parseFloat((inputvalue.value * 9) / 4 + 32).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "R" && tempto.value === "K") {
+    cal.value = parseFloat((inputvalue.value * 5) / 4 + 273).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "K" && tempto.value === "C") {
+    cal.value = parseFloat(inputvalue.value - 273).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "K" && tempto.value === "F") {
+    cal.value = parseFloat((inputvalue.value - 273) * 1.8 + 32).toFixed(2);
+    return cal.value;
+  } else if (tempfrom.value === "K" && tempto.value === "R") {
+    cal.value = parseFloat(((inputvalue.value - 273) * 4) / 5).toFixed(2);
+    return cal.value;
   }
-  else if(tempfrom.value==='C' && tempto.value==='K'){
-    cal.value = parseFloat(inputvalue.value -273).toFixed(2)
-    return cal.value
+};
+
+const iscold = () => {
+  if (
+    (tempfrom.value === "C" && cal.value > 10) ||
+    (tempfrom.value === "F" && cal.value > 10) ||
+    (tempfrom.value === "R" && cal.value > 10) ||
+    (tempfrom.value === "K" && cal.value > 10)
+  ) {
+    return "หนาว!!!!";
+  } else if (
+    (tempfrom.value === "C" && cal.value < 10) ||
+    (tempfrom.value === "F" && cal.value < 10) ||
+    (tempfrom.value === "R" && cal.value < 10) ||
+    (tempfrom.value === "K" && cal.value < 10)
+  ) {
+    return "ร้อน!!!!";
   }
-  else if(tempfrom.value==='F' && tempto.value==='C'){
-    cal.value = parseFloat((inputvalue.value -32)*5/9).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='F' && tempto.value==='R'){
-    cal.value = parseFloat((inputvalue.value -32)*4/9).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='F' && tempto.value==='K'){
-    cal.value = parseFloat(((inputvalue.value -32)*5)+273).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='R' && tempto.value==='C'){
-    cal.value = parseFloat(inputvalue.value *5/4).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='R' && tempto.value==='F'){
-    cal.value = parseFloat((inputvalue.value *9/4)+32).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='R' && tempto.value==='K'){
-    cal.value = parseFloat((inputvalue.value *5/4)+273).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='K' && tempto.value==='C'){
-    cal.value = parseFloat(inputvalue.value -273).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='K' && tempto.value==='F'){
-    cal.value = parseFloat(((inputvalue.value -273)*1.8)+32).toFixed(2)
-    return cal.value
-  }
-  else if(tempfrom.value==='K' && tempto.value==='R'){
-    cal.value = parseFloat((inputvalue.value -273)*4/5).toFixed(2)
-    return cal.value
-  }
-}
+};
+
+const reset = () => {
+  inputvalue.value = 0;
+  cal.value = 0;
+  tempfrom.value = "C";
+  tempto.value = "F";
+};
 </script>
 
 <template>
+  <div>
+    <div>
+      <input
+        type="text"
+        v-model="inputvalue"
+        v-on:keyup.enter="fromto"
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      />
 
-<div>
- <div >
-  <input type="text" 
-  v-model="inputvalue"  
-  v-on:keyup.enter="fromto"
-  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
- 
-  <select  v-model="tempfrom">
- <option>C</option>
- <option>F</option>
- <option>R</option>
- <option>K</option>
-  </select>
+      <select v-model="tempfrom">
+        <option>C</option>
+        <option>F</option>
+        <option>R</option>
+        <option>K</option>
+      </select>
 
-  <select  v-model="tempto">
- <option>C</option>
- <option>F</option>
- <option>R</option>
- <option>K</option>
-  </select>
+      <select v-model="tempto">
+        <option>C</option>
+        <option>F</option>
+        <option>R</option>
+        <option>K</option>
+      </select>
 
-  <button v-on:click="fromto">แปลงอุณหภูมิ</button>
+      <button v-on:click="fromto">แปลงอุณหภูมิ</button>
 
+      ค่าที่ได้ : {{ cal }}
 
-  ค่าที่ได้ : {{ cal }}
+      <div v-show="tempfrom === 'C' && cal >= 20">หนาวมากๆๆๆ</div>
 
-
-  <div v-show="tempfrom==='C'&&cal>=20">
-หนาวมากๆๆๆ C
-</div>
-<div v-show="tempfrom==='F'&&cal>=20">
-หนาวมากๆๆๆ F
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-หนาวมากๆๆๆ K
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-หนาวมากๆๆๆ R
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-ร้อนมากๆๆๆ C
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-ร้อนมากๆๆๆ F
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-ร้อนมากๆๆๆ K
-</div>
-<div v-show="tempfrom==='C'&&cal>=20">
-ร้อนมากๆๆๆ R
-</div>
-  
- </div>
-
-</div>
+      <button v-on:click="reset">reset</button>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>
